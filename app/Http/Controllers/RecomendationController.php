@@ -23,7 +23,7 @@ class RecomendationController extends Controller
         $userId = Auth::id();
 
         Recommendation::create([
-        'recommendation_name' => "fggfgf",
+        'recommendation_name' => $request->recommendation_name,
         'recommendation_for' => $request->recommendation_for,
         'recommendation_1' => $request->recommendation_1,
         'recommendation_2' => $request->recommendation_2,
@@ -40,5 +40,29 @@ class RecomendationController extends Controller
 
         
         return redirect()->route('recommender.recommendation');
+    }
+
+    public function myrecommendation(Request $request){
+        $userId=Auth::id();
+        $recommendation_list= Recommendation::join('songs as songs0', 'recommendations.recommendation_for', '=', 'songs0.id')
+        
+                                        ->join('songs as songs1', 'recommendations.recommendation_1', '=', 'songs1.id')
+        
+                                       ->join('songs as songs2', 'recommendations.recommendation_2', '=', 'songs2.id')
+        
+                                       ->join('songs as songs3', 'recommendations.recommendation_3', '=', 'songs3.id')
+                                       
+                                        ->select(
+                                            'recommendations.*',
+        
+                                            'songs0.title as recommendation_for_name',
+        
+                                            'songs1.title as recommendation_1_name',
+        
+                                            'songs2.title as recommendation_2_name',
+        
+                                            'songs3.title as recommendation_3_name'
+                                        ) ->where('recommendations.user_id','=',$userId) ->get();
+        return view('recommendor.recommendation.myrecommendation',["recommendations"=>$recommendation_list]);
     }
 }

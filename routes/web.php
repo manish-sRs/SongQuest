@@ -38,6 +38,7 @@ Route::middleware(['auth','user-role:recommender'])->group(function()
     Route::post('/recommender/song/create', [SongController::class, 'create'])->name('recommender.song.create');
     Route::get("/recommender/recommendation",[RecomendationController::class, 'index'])->name("recommender.recommendation");
     Route::post("/recommender/recommendation",[RecomendationController::class, 'create'])->name("recommender.recommendation.create");
+    Route::get("/recommender/recommendation/myrecommendation",[RecomendationController::class, 'myrecommendation'])->name("myrecommendation");
 
 });
 
@@ -47,6 +48,7 @@ Route::middleware(['auth','user-role:admin'])->group(function()
     Route::get("/admin/home",[HomeController::class, 'adminHome'])->name("admin.home");
     //genre route:
     Route::get("/admin/genre",[GenreController::class, 'index'])->name("admin.genre");
+    
     Route::post('/admin/genre/create', [GenreController::class, 'create'])->name('admin.genre.create');
     Route::get('/admin/genre/show/{id}', [GenreController::class, 'show'])->name('admin.genre.show');
     Route::put('/admin/genre/update/{id}', [GenreController::class, 'update'])->name('admin.genre.update');

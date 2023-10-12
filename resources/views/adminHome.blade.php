@@ -1,12 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" style="max-width: 100%; padding-top:12px;">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}
-                <a href="{{ route('admin.genre')}}" >Genre</a>
+                <a class="btn btn-warning" href="{{ route('admin.genre')}}" >Genre</a>
+                <a class="btn btn-warning" >Users</a>
+                <a class="btn btn-warning">Songs</a>
+                <a class="btn btn-warning">Recommendation</a>
+                <a class="btn btn-warning">Songs</a>
                 </div>
 
                 <div class="card-body">
@@ -16,9 +20,27 @@
                         </div>
                     @endif
                     {{ Auth::user()->name }}
-                    <br>
+                    
                     {{$msg}}
                     {{ __('You are logged in!') }}
+
+                    <!-- Users of the system: -->
+                    <div style="font-size: larger; padding-top:12px; padding-bottom:10px; padding-left:5px">List of all the users</div>
+
+                    <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Role</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <!-- <tbody>
+                    
+                    </tbody> -->
+                    </table>
 
                 </div>
             </div>

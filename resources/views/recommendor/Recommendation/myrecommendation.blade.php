@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container" style="max-width: 100%;">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -19,7 +20,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    {{$msg}} {{ Auth::user()->name ,}}
+                    {{ Auth::user()->name ,}}
                     {{ __('You are logged in!') }}
                     <br><br>
                     
@@ -51,9 +52,10 @@
                             <td>{{ $recommendation->recommendation_3_name }}</td>
                             <td>{{ $recommendation->description}}</td>
                             <td>{{ $recommendation->user->name }}</td>
-                            <td><a href="#" class="btn btn-primary update-genre" >View</a>
-                            
+                            <td><a href="#" class="btn btn-primary update-genre" >update</a>
+                                <a href="#" class="btn btn-primary update-genre" >delete</a>
                             </td>
+
                         </tr>
                         @php
                             $counter++;
@@ -68,8 +70,6 @@
         </div>
     </div>
 </div>
-
-<!-- Form  -->
 
 
 

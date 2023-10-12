@@ -15,21 +15,20 @@ class UserRoleMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
    
-     public function handle(Request $request, Closure $next)
-     {
-      
-        if(Auth::check() && Auth::user()->role == "admin"){
-            return $next($request);
+     public function handle($request, Closure $next, $role)
+    {
+        // Check if the user is authenticated
+        if (!auth()->check()) {
+            return redirect('/login');
         }
-        if(Auth::check() && Auth::user()->role == "recommender"){
-            return $next($request);
+        // Get the authenticated user's role
+        $userRole = auth()->user()->role; // Assuming 'role' is the column in your users table representing the user's role
+        // Check if the user has the required role
+        if ($userRole != $role) {
+            // User does not have the required role, redirect or return an error response
+            abort(403, 'Unauthorized action.');
         }
-        if(Auth::check() && Auth::user()->role == "user"){
-            return $next($request);
-        }
-        
-        
-        
-        return redirect('/');
+        // User has the required role, proceed with the request
+        return $next($request);
     }
 }

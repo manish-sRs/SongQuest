@@ -19,7 +19,11 @@
                     <form class="needs-validation" method="post" action="{{ route('recommender.recommendation.create') }}" >
                         @csrf
                     <div class="form-row">
-                        <!-- Name-->
+                    <div class="col-md-4 mb-3">
+                        <label for="validationTooltip01">Recommendation Name</label>
+                        <input class="form-control" type="text" name="recommendation_name" id=""/>
+                        </div>
+
                         <div class="col-md-4 mb-3">
                         <label for="validationTooltip01">Recommendation For</label>
                         <select class="form-control select2" name="recommendation_for" id="">
