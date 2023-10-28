@@ -9,7 +9,7 @@
                 <div class="card-header" id="card_header">
                     {{ __(' Add your recommendation here |') }}
                     
-                    <button class="btn btn-warning" onClick="">My Recommendation</button>
+                    <a class="btn btn-warning" href="{{ route('myrecommendation') }}">My Recommendation</a>
                 </div>
 
                 <div class="card-body">

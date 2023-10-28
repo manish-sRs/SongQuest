@@ -53,11 +53,13 @@ Route::middleware(['auth','user-role:admin'])->group(function()
     Route::get('/admin/genre/show/{id}', [GenreController::class, 'show'])->name('admin.genre.show');
     Route::put('/admin/genre/update/{id}', [GenreController::class, 'update'])->name('admin.genre.update');
     Route::delete('/admin/genre/delete/{id}', [GenreController::class, 'delete'])->name('admin.genre.delete');
+
+    Route::get("/admin/songs",[SongController::class, 'showSong'])->name("admin.songs");
 });
 
 
 /* Profile routing */
 Route::middleware(['auth','user-role:recommender'])->group(function()
 {
-    Route::get("/recommender/profile",[HomeController::class, 'recommenderHome'])->name("recommender.home");
+    Route::get("/recommender/profile",[HomeController::class, 'recommenderHome'])->name("recommender.profile");
 });

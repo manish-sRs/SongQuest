@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Recommendation;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -28,7 +29,9 @@ class HomeController extends Controller
     }
     public function adminHome()
     {
-        return view('adminHome',["msg"=>"Hello! "]);
+        $users = User::all();
+
+        return view('adminHome',["msg"=>"Hello! "], ['users' => $users]);
     }
     public function recommenderHome()
     {
