@@ -6,9 +6,9 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header" id="card_header">
-                <a href="{{ route('recommender.song') }}" class="btn btn-warning" >Add a song</a>
+                <a href="{{ route('recommender.song') }}" class="btn btn-warning" >Add song details</a>
                     <a href="{{ route('recommender.recommendation') }}" class="btn btn-warning" >Recommend a song </a>
-                    <button class="btn btn-warning" onclick="">Recommendation Posts</button>
+                    <!-- <button class="btn btn-warning" onclick="">Recommendation Posts</button> -->
                     <button class="btn btn-warning" onclick="">Algorithm Recommendation</button>
                     <a class="btn btn-warning" href="{{ route('myrecommendation') }}">My Recommendation</a>
                 </div>

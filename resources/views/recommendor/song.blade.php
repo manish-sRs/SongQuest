@@ -7,8 +7,8 @@
             <div class="card">
                 <div class="card-header" id="card_header">
                     {{ __(' Add a Song') }}
-                    <button class="btn btn-warning" onclick="">Existing song recommendation</button>
-                    <button class="btn btn-warning" onClick="">My Recommendation</button>
+                   
+                    <a class="btn btn-warning" href="{{ route('myrecommendation') }}">My Recommendation</a>
                 </div>
 
                 <div class="card-body">

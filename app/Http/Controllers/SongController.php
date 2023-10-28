@@ -53,6 +53,19 @@ class SongController extends Controller
             return redirect()->back();
         }
     }
+
+
+    //Show Function:
+
+    // public function show(int $id) {
+    //     $song = song::findOrFail($id);
+    //     return response()->json($song);
+    // }
     
+
+    public function showSong(Request $request){
+        $song = Song::all();
+        return view('admin.songs', ['song' => $song]);
+    }
 
 }

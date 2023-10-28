@@ -7,8 +7,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}
                 <a class="btn btn-warning" href="{{ route('admin.genre')}}" >Genre</a>
-                <a class="btn btn-warning" >Users</a>
-                <a class="btn btn-warning">Songs</a>
+                <a class="btn btn-warning" href="{{route('admin.songs')}}">Songs</a>
                 <a class="btn btn-warning">Recommendation</a>
                 <a class="btn btn-warning">Songs</a>
                 </div>
@@ -24,6 +23,18 @@
                     {{$msg}}
                     {{ __('You are logged in!') }}
 
+                    <!-- Search bar -->
+
+                    <div class="col-md-4 mb-3">
+                        <label >Search: </label>
+                        <select class="form-control select2" name="Search" id="">
+                            <option value="0" selected disabled>---Select---</option>
+                            @foreach ($users as $item)
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
+                        </div>
+
                     <!-- Users of the system: -->
                     <div style="font-size: larger; padding-top:12px; padding-bottom:10px; padding-left:5px">List of all the users</div>
 
@@ -37,9 +48,28 @@
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
-                    <!-- <tbody>
-                    
-                    </tbody> -->
+                    <tbody>
+                    @php
+                        $counter = 1;
+                    @endphp
+
+                    @foreach($users as $user)
+                    <tr>
+                            <th scope="row">{{ $counter }}</th>
+                            <td>{{ $user->name }}</td> 
+                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->role }}</td>
+                            <td><a href="#" class="btn btn-success" >Update</a> <a href="#" class="btn btn-primary">Delete</a>
+                            
+                            </td>
+                        </tr>
+                        @php
+                            $counter++;
+                        @endphp
+                    @endforeach
+
+
+                    </tbody>
                     </table>
 
                 </div>
