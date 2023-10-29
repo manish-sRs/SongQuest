@@ -52,8 +52,8 @@
                             <td>{{ $recommendation->recommendation_3_name }}</td>
                             <td>{{ $recommendation->description}}</td>
                             <td>{{ $recommendation->user->name }}</td>
-                            <td><a href="#" class="btn btn-primary update-genre" >update</a>
-                                <a href="#" class="btn btn-primary update-genre" >delete</a>
+                            <td><a href="#" class="btn btn-primary update-rec"  >update</a>
+                                <a href="#" class="btn btn-primary update-rec" >delete</a>
                             </td>
 
                         </tr>

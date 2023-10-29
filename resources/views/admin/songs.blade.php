@@ -31,6 +31,7 @@
                         <th scope="col">Title</th>
                         <th scope="col">Artist name</th>
                         <th scope="col">Genre</th>
+                        <th scope="col">Album</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -43,8 +44,9 @@
                 <tr>
                         <th scope="row">{{ $counter }}</th>
                         <td>{{ $item->title }}</td> 
-                        <td>{{ $item->genre }}</td>
-                        <td>{{ $item->artist_id }}</td>
+                        <td></td>
+                        <td>{{ $item->genre_id }}</td>
+                        <td>{{$item->album}}</td>
                         <td><a href="#" class="btn btn-success" >Update</a> <a href="#" class="btn btn-primary">Delete</a>
                         
                         </td>
