@@ -12,7 +12,7 @@ class song extends Model
     use HasFactory;
     protected $table = 'songs';
     protected $primaryKey = 'id';
-    protected $fillable = ['title','album', 'genre_id', 'year'];
+    protected $fillable = ['title','album', 'genre_id', 'year', 'link'];
 
     public function genre(): BelongsTo
     {
@@ -46,3 +46,5 @@ class song extends Model
     }
 
 }
+
+
