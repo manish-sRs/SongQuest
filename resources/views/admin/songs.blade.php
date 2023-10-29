@@ -43,9 +43,14 @@
                 <tr>
                         <th scope="row">{{ $counter }}</th>
                         <td>{{ $item->title }}</td> 
-                        <td>{{ $item->genre }}</td>
-                        <td>{{ $item->artist_id }}</td>
-                        <td><a href="#" class="btn btn-success" >Update</a> <a href="#" class="btn btn-primary">Delete</a>
+                        <td>@foreach ($item->artists as $artist)
+                               {{$artist->artist_name}},
+                             @endforeach
+                          
+                        </td>
+                        <td>{{ $item->genre->genre_name }}</td>
+                        {{-- <td>{{ $item->artist_id }}</td> --}}
+                        <td><a href="{{ route('admin.songs.detail', ['id' => $item->id]) }}" class="btn btn-success" >View</a> <a href="#" class="btn btn-primary">Delete</a>
                         
                         </td>
                     </tr>

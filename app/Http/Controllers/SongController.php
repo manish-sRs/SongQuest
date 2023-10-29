@@ -23,6 +23,7 @@ class SongController extends Controller
 
     public function create(Request $request)
     {
+       
         $request->validate([
             'song_title' => 'required|max:255',
         ]);
@@ -36,7 +37,8 @@ class SongController extends Controller
                 'title' => $request->song_title,
                 'album' => $request->album,
                 'year' => $request->year,
-                'genre_id' => $request->genre_id
+                'genre_id' => $request->genre_id,
+                'link'=> $request->link
             ]);
     
             foreach ($artistNames as $name) {
@@ -64,8 +66,15 @@ class SongController extends Controller
     
 
     public function showSong(Request $request){
-        $song = Song::all();
-        return view('admin.songs', ['song' => $song]);
+        $songs = Song::with('artists')->get();
+        //dd($songs);
+        return view('admin.songs', ['song' => $songs]);
+    }
+
+    public function songDetail(Request $request, $id){
+        $song = Song::with('artists')->find($id);
+       
+        return view('shared.song_detail',['song' => $song]);
     }
 
 }
