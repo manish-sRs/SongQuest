@@ -61,7 +61,15 @@
                             @endforeach
                         </select>
                         </div>
-                        <label>* If the song already exists in the database than go to the "Existing Song Recommendation" and search the song in there !</label>
+                        <label class="text-danger">* If the song already exists in the database than go to the "Existing Song Recommendation" and search the song in there !</label>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col-md-3 mb-3">
+                            <label for="Song Link">Youtube Link</label>
+                            <input type="text" id="youtube-link" class="form-control" placeholder="youtube link" name="link">
+                              <label for="" class="text-danger" id="error-message">*Must be a YouTube link</label>
+                        </div>
                     </div><br>
                     <button class="btn btn-primary" type="submit">Submit recommendation</button>
                     </form>
@@ -74,6 +82,20 @@
 
 <!-- Form  -->
 
-
+<script>
+    document.getElementById('youtube-link').addEventListener('input', function() {
+        var youtubeLink = document.getElementById('youtube-link').value;
+        var errorMessage = document.getElementById('error-message');
+        
+        // Regular expression to match YouTube video URLs
+        var youtubeRegExp = /^(https?:\/\/)?(www\.)?(youtube|youtu|youtube-nocookie)\.(com|be)\/(watch\?v=|embed\/|v\/|.+\?v=)?([^&=%\?]{11})/;
+        
+        if (youtubeRegExp.test(youtubeLink)) {
+            errorMessage.style.display = 'none'; // Hide error message if it's a valid YouTube link
+        } else {
+            errorMessage.style.display = 'block'; // Show error message if it's not a valid YouTube link
+        }
+    });
+</script>
 
 @endsection

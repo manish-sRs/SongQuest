@@ -30,6 +30,12 @@ Route::middleware(['auth','user-role:user'])->group(function()
     Route::get("/home",[HomeController::class, 'userHome'])->name("home");
 });
 
+Route::middleware(['auth'])->group(function()
+{
+   // Route::get("/home",[HomeController::class, 'userHome'])->name("home");
+});
+
+
 // Route Recommender
 Route::middleware(['auth','user-role:recommender'])->group(function()
 {
@@ -55,6 +61,8 @@ Route::middleware(['auth','user-role:admin'])->group(function()
     Route::delete('/admin/genre/delete/{id}', [GenreController::class, 'delete'])->name('admin.genre.delete');
 
     Route::get("/admin/songs",[SongController::class, 'showSong'])->name("admin.songs");
+    Route::get("/admin/song/view/{id}",[SongController::class, 'songDetail'])->name("admin.songs.detail");
+
 });
 
 
