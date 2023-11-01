@@ -2,17 +2,23 @@
 
 @section('content')
 
-<div class="container" >
+<div class="container" style="padding-bottom: 40px; padding-top:20px;">
+  <form class="d-flex">
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+</div>
+
+<!--
+<div class="container" style="max-width: 100%; border: 4px solid ; border-radius: 5px;">
     <div class="container justify-content-center align-items-center">
         <div>
             <div class="row">
                 <div class="col-6">
                     <label for="">Song Title</label>
                     <p>{{ $song->title }}</p>
-
-
-
                 </div>
+
                 <div class="col-6">
                     <label for="">Artist</label>
                     <p>@foreach ($song->artists as $artist)
@@ -20,6 +26,7 @@
                       @endforeach</p>
                 </div>
             </div>
+
             <div class="row justify-content-center">
                 <div class="col-6">Album
                     <p>{{ $song->album }}</p>
@@ -28,22 +35,68 @@
                     <p>{{ $song->genre->genre_name }}</p>
                 </div>
             </div>
+
             <div class="row justify-content-center">
                 <div class="col-6">Year
                     <p>{{ $song->year }}</p>
                 </div>
-                @if($song->link)
-                <div class="col-6">Youtube
-                    <p>
-                        <div id="youtube-video"></div>
-                    </p>
-                </div>
-                @endif
+                
             </div>
+
         </div>
     </div>
     
 </div>
+
+-->
+
+<!-- Song details: -->
+
+                <div class="card-body">
+                
+                  
+                    
+                    <table class="table table-responsive" style="border-radius: 5px;">
+                    <thead>
+                        <tr style="padding-left: 10px;">
+                            <th scope="col">Song Title</th>
+                            <th scope="col">Artists</th>
+                            <th scope="col">Album</th>
+                            <th scope="col">Genre</th>
+                            <th scope="col">Year</th>
+                            <th scope="col">Youtube</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    
+                    <tr>
+                            <td>{{ $song->title }}</td> 
+                            <td>@foreach ($song->artists as $artist)
+                                    {{$artist->artist_name}},
+                                @endforeach
+                            </td>
+                            <td>{{ $song->album }}</td>
+                            <td>{{ $song->genre->genre_name }}</td>
+                            <td> {{ $song->year }}</td>
+                            <td>@if($song->link)
+                                     <div id="youtube-video"></div>
+                                @endif</td>
+                    </tr>
+                    
+                    </tbody>
+                    </table>
+
+                </div>
+
+
+
+
+
+
+
+
+
+
 
 
 <script>

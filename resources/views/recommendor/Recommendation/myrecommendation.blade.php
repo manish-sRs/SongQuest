@@ -9,9 +9,9 @@
                 <div class="card-header" id="card_header">
                 <a href="{{ route('recommender.song') }}" class="btn btn-warning" >Add a song</a>
                     <a href="{{ route('recommender.recommendation') }}" class="btn btn-warning" >Recommend a song </a>
-                    <button class="btn btn-warning" onclick="">Recommendation Posts</button>
                     <button class="btn btn-warning" onclick="">Algorithm Recommendation</button>
-                    <a class="btn btn-warning" href="{{ route('myrecommendation') }}">My Recommendation</a>
+                    
+                    <a class="btn btn-warning" href="{{route('recommender.songview')}}">Songs</a>
                 </div>
 
                 <div class="card-body">
@@ -35,6 +35,7 @@
                             <th scope="col">Recommendation 3</th>
                             <th scope="col">Description</th>
                             <th scope="col">User</th>
+                            <th scope="col">Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -52,8 +53,8 @@
                             <td>{{ $recommendation->recommendation_3_name }}</td>
                             <td>{{ $recommendation->description}}</td>
                             <td>{{ $recommendation->user->name }}</td>
-                            <td><a href="#" class="btn btn-primary update-genre" >update</a>
-                                <a href="#" class="btn btn-primary update-genre" >delete</a>
+                            <td><a href="#" class="btn btn-primary update-rec"  >update</a>
+                                <a href="#" class="btn btn-primary update-rec" >delete</a>
                             </td>
 
                         </tr>
