@@ -37,7 +37,7 @@
             </td>
             <td>{{ $item->genre->genre_name }}</td>
             {{-- <td>{{ $item->artist_id }}</td> --}}
-            <td><a href="{{ route('recommender.songview.detail', ['id' => $item->id]) }}" class="btn btn-success" >View</a>
+            <td><a href="{{ route('recommendation.songs.detail', ['id' => $item->id]) }} " class="btn btn-success" >View</a>
             
             </td>
         </tr>

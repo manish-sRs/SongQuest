@@ -3,7 +3,7 @@
 @section('content')
 <div class="container" style="max-width: 100%; padding-top:12px;">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="">
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}
                 <a class="btn btn-warning" href="{{ route('admin.genre')}}" >Genre</a>
