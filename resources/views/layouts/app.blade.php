@@ -99,7 +99,7 @@
             
 @include('sweetalert::alert')
 
-    <footer class="bg-dark text-center text-white" style="position: relative;
+    <!-- <footer class="bg-dark text-center text-white" style="position: relative;
        bottom: 0; width: 100%;">
         
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
@@ -107,6 +107,6 @@
     <a class="text-white" href="/">Song Quest</a>
   </div>
 
-    </footer>
+    </footer> -->
 </body>
 </html>

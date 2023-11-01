@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\song;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\SongSimilarity;
 
 
 
@@ -136,5 +137,25 @@ class RecomendationController extends Controller
         ) ->find($id);
         
     return view('recommendor.recommendation.recommendationDetail',["recommendation"=>$recommendation]);
+    }
+
+    public function algorecommendation(Request $request,){
+        
+        $selectedSong= Song::find($request->song_id);
+
+        
+
+        // Algorithm using:
+        $recommendedSongs=[];
+        if($request->song_id){
+            $songs= Song::latest()->where('genre_id',$selectedSong->genre_id)->get()->toArray();
+        $songSimilarity = new SongSimilarity($songs);
+        $similarityMatrix  = $songSimilarity->calculateSimilarityMatrix();
+        $recommendedSongs = $songSimilarity->getSongsSortedBySimularity($request->song_id, $similarityMatrix);
+        }
+
+
+        $song = Song::with('artists')->get();
+        return view('recommendor.recommendation.algorithmrecommendation',['song'=> $song,'recommendedSongs'=>$recommendedSongs,'song_id'=>$request->song_id]);
     }
 }
