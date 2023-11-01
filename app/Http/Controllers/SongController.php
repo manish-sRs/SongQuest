@@ -77,4 +77,10 @@ class SongController extends Controller
         return view('shared.song_detail',['song' => $song]);
     }
 
+    public function songview(Request $request){
+        $songs = Song::with('artists')->get();
+        //dd($songs);
+        return view('recommendor.songview', ['song' => $songs]);
+    }
+
 }

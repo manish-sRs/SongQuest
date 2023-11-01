@@ -7,8 +7,10 @@
             <div class="card">
                 <div class="card-header" id="card_header">
                     {{ __(' Add a Song') }}
-                   
+                    <a href="{{ route('recommender.recommendation') }}" class="btn btn-warning" >Recommend a song </a>
+                    <button class="btn btn-warning" onclick="">Algorithm Recommendation</button>
                     <a class="btn btn-warning" href="{{ route('myrecommendation') }}">My Recommendation</a>
+                    <a class="btn btn-warning" href="{{route('recommender.songview')}}">Songs</a>
                 </div>
 
                 <div class="card-body">

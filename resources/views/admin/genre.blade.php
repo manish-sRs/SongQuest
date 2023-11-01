@@ -34,9 +34,8 @@
                             <th scope="row">{{ $counter }}</th>
                             <td>{{ $genre->genre_name }}</td>
                             <td>
-                            <td>
-                            <a href="#" class="btn btn-primary update-genre" data-genre-id="{{ $genre->id }}">Update</a>
-                            <a href="#" class="btn btn-danger delete-genre" data-genre-id="{{ $genre->id }}">Delete</a>
+                            <a href="#" class="btn btn-primary update-genre" data-genre-id="{{ $genre->id }}">Edit</a>
+                            <!--<a href="#" class="btn btn-danger delete-genre" data-genre-id="{{ $genre->id }}">Delete</a><-->
                             </td>
                         </tr>
                         @php

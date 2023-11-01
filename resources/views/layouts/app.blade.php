@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Music Recommendation System') }}</title>
+    <title>{{ config('app.name', 'Song Quest') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -98,5 +98,15 @@
 
             
 @include('sweetalert::alert')
+
+    <footer class="bg-dark text-center text-white" style="position: relative;
+       bottom: 0; width: 100%;">
+        
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2023 Copyright: 
+    <a class="text-white" href="/">Song Quest</a>
+  </div>
+
+    </footer>
 </body>
 </html>

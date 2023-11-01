@@ -9,7 +9,11 @@
                 <div class="card-header" id="card_header">
                     {{ __(' Add your recommendation here |') }}
                     
+                    <a href="{{ route('recommender.song') }}" class="btn btn-warning" >Add song details</a>
+                    
+                    <button class="btn btn-warning" onclick="">Algorithm Recommendation</button>
                     <a class="btn btn-warning" href="{{ route('myrecommendation') }}">My Recommendation</a>
+                    <a class="btn btn-warning" href="{{route('recommender.songview')}}">Songs</a>
                 </div>
 
                 <div class="card-body">
@@ -84,7 +88,7 @@
                         </div>
                     <br>
                     <button class="btn btn-primary" type="submit">Submit recommendation</button>
-                    
+                    <br><br>
                     </form>
 
                 </div>

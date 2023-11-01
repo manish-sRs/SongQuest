@@ -3,14 +3,14 @@
 @section('content')
 <div class="container" style="max-width: 100%;">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="">
             <div class="card">
                 <div class="card-header" id="card_header">
                 <a href="{{ route('recommender.song') }}" class="btn btn-warning" >Add song details</a>
                     <a href="{{ route('recommender.recommendation') }}" class="btn btn-warning" >Recommend a song </a>
-                    <!-- <button class="btn btn-warning" onclick="">Recommendation Posts</button> -->
                     <button class="btn btn-warning" onclick="">Algorithm Recommendation</button>
                     <a class="btn btn-warning" href="{{ route('myrecommendation') }}">My Recommendation</a>
+                    <a class="btn btn-warning" href="{{route('recommender.songview')}}">Songs</a>
                 </div>
 
                 <div class="card-body">
