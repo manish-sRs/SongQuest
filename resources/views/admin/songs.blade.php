@@ -22,7 +22,7 @@
 
 
                 <!-- List of all the songs: -->
-                <div style="font-size: larger; padding-top:12px; padding-bottom:10px; padding-left:5px">Songs:</div>
+                <div style="font-size: larger; padding-top:12px; padding-bottom:10px; padding-left:5px">All Songs :</div>
 
                 <table class="table table-responsive">
                 <thead>
@@ -51,7 +51,7 @@
                         </td>
                         <td>{{ $item->genre->genre_name }}</td>
                         {{-- <td>{{ $item->artist_id }}</td> --}}
-                        <td><a href="{{ route('admin.songs.detail', ['id' => $item->id]) }}" class="btn btn-success" >View</a> <a href="#" class="btn btn-primary">Delete</a>
+                        <td><a href="{{ route('admin.songs.detail', ['id' => $item->id]) }}" class="btn btn-success" >View</a> <a href="#" class="btn btn-danger">Delete</a>
                         
                         </td>
                     </tr>
