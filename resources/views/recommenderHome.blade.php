@@ -23,7 +23,7 @@
                     {{ __('You are logged in!') }}
                     <br><br>
                     
-                    <table class="table table-responsive">
+                    <table class="table table-striped table-responsive" id="recommendation_table">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -34,6 +34,7 @@
                             <th scope="col">Recommendation 3</th>
                             <th scope="col">Description</th>
                             <th scope="col">User</th>
+                            <th scope="col">Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -51,7 +52,7 @@
                             <td>{{ $recommendation->recommendation_3_name }}</td>
                             <td>{{ $recommendation->description}}</td>
                             <td>{{ $recommendation->user->name }}</td>
-                            <td><a href="#" class="btn btn-primary update-genre" >View</a>
+                            <td><a href="{{ route('recommendation_detail', ['id' => $recommendation->id])}}" class="btn btn-primary update-genre" >View</a>
                             
                             </td>
                         </tr>
@@ -71,6 +72,8 @@
 
 <!-- Form  -->
 
-
+<script>
+    new DataTable('#recommendation_table');
+</script>
 
 @endsection

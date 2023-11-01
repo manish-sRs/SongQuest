@@ -14,7 +14,8 @@ class RecomendationController extends Controller
 {
     //
     public function index() {
-        $song = song::all();
+        $song = Song::with('artists')->get();
+        
         
         return view('recommendor.recommendation.recommendation', ['song' => $song]);
     }
@@ -57,5 +58,29 @@ class RecomendationController extends Controller
                                             'songs3.title as recommendation_3_name'
                                         ) ->where('recommendations.user_id','=',$userId) ->get();
         return view('recommendor.recommendation.myrecommendation',["recommendations"=>$recommendation_list]);
+    }
+
+    public function recommendation_detail(Request $request,$id){
+
+
+        $recommendation= Recommendation::join('songs as songs0', 'recommendations.recommendation_for', '=', 'songs0.id')
+        ->join('songs as songs1', 'recommendations.recommendation_1', '=', 'songs1.id')
+       ->join('songs as songs2', 'recommendations.recommendation_2', '=', 'songs2.id')
+       ->join('songs as songs3', 'recommendations.recommendation_3', '=', 'songs3.id')
+       
+        ->select(
+            'recommendations.*',
+            'songs0.id as rec_for_id',
+            'songs0.title as rec_for_title',
+            'songs1.id as rec_1_id',
+            'songs1.title as rec_1_title',
+            'songs2.id as rec_2_id',
+            'songs2.title as rec_2_title',
+            'songs3.id as rec_3_id',
+            'songs3.title as rec_3_title'
+            
+        ) ->find($id);
+        
+    return view('recommendor.recommendation.recommendationDetail',["recommendation"=>$recommendation]);
     }
 }
