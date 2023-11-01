@@ -51,6 +51,10 @@ Route::middleware(['auth','user-role:recommender'])->group(function()
     Route::get("/recommender/song/view/{id}",[SongController::class, 'songDetail'])->name("recommendation.songs.detail");
     Route::get("/recommender/songview",[SongController::class, 'songview'])->name("recommender.songview");
    // Route::get("/recommender/song/view/{id}",[SongController::class, 'songDetail'])->name("recommender.songview.detail");
+
+    //Recommendaion algorithm:
+    Route::get("/recommender/recommendation/algorithmrecommendation",[RecomendationController::class, 'algorecommendation'])->name("algoRecommendation");
+
 });
 
 // Route Admin
