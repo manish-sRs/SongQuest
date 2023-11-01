@@ -78,11 +78,11 @@
                         <select class="form-control select2" name="recommendation_3" id="songSelect4">
                             <option value="0" selected disabled>---Select---</option>
                             @foreach ($song as $item)
-            <option value="{{ $item->id }}" data-artist="@foreach($item->artists as $artist)
-                {{$artist->artist_name}}, 
-                @endforeach
-                ">{{ $item->title }}</option>
-        @endforeach
+                                <option value="{{ $item->id }}" data-artist="@foreach($item->artists as $artist)
+                                    {{$artist->artist_name}}, 
+                                    @endforeach
+                                    ">{{ $item->title }}</option>
+                            @endforeach
                         </select>
                         <div class="text-success" id="artistName4"></div>
                         </div>

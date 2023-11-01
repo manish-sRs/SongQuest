@@ -45,6 +45,11 @@ Route::middleware(['auth','user-role:recommender'])->group(function()
     Route::get("/recommender/recommendation",[RecomendationController::class, 'index'])->name("recommender.recommendation");
     Route::post("/recommender/recommendation",[RecomendationController::class, 'create'])->name("recommender.recommendation.create");
     Route::get("/recommender/recommendation/myrecommendation",[RecomendationController::class, 'myrecommendation'])->name("myrecommendation");
+    Route::post("/recommender/recommendation/myrecommendation/edit",[RecomendationController::class, 'edit'])->name("recommendation.edit");
+
+    Route::get("/recommender/recommendation/myrecommendation/delete/{id}",[RecomendationController::class, 'delete'])->name("recommendation.delete");
+
+
 
     Route::get("/recommender/recommendation/detail/{id}",[RecomendationController::class, 'recommendation_detail'])->name("recommendation_detail");
 
