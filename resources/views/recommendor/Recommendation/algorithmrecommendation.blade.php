@@ -42,10 +42,10 @@
                         <tr>
                             <th scope="col">Number</th>
                             <th scope="col">Recommended For You:</th>
-                            <th></th>
+                            <th>Artists</th>
                             <th>Genre</th>
-                            <th></th>
-                            <th></th>
+                            <th>Album</th>
+                            <th>Year</th>
                             <th scope="col">Action</th>
                     </tr>
                     </thead>
@@ -58,8 +58,10 @@
                         <tr>
                             <th scope="row">{{ $counter }}</th>
                             <td>{{$item['title']}}</td>
-                            <td>Artist</td>
-                            <td>{{$item['genre_id']}}</td>
+                            <td>@foreach ($item->artists as $artist)
+                                {{$artist->artist_name}},
+                                @endforeach</td>
+                            <td>{{ $item->genre->genre_name }}</td>
                             <td>{{$item['album']}}</td>
                             <td>{{$item['year']}}</td>
                             <td><a href="{{ route('recommendation.songs.detail', ['id' => $item['id']]) }} " class="btn btn-success" >View</a></td>
@@ -80,5 +82,17 @@
 </div>                
 
 
+<script>
+    $(document).ready(function () {
+        $('#songSelect1').change(function () {
+            var selectedSong = $(this).find('option:selected');
+            var artistNames = selectedSong.data('artist');
+            var targetDivId = $(this).attr('id').replace('songSelect', 'artistName');
+            $('#' + targetDivId).text('Artist: ' + artistNames);
+        });
+    });
 
+
+    new DataTable('#recommendation_table');
+</script>
 @endsection
