@@ -24,7 +24,7 @@
                     {{ __('You are logged in!') }}
                     <br><br>
                     
-                    <table class="table table-responsive">
+                    <table class="table table-responsive" id="myrecommendation_table">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -165,6 +165,10 @@
                     </select>
                      <div class="text-success" id="artistName4"></div>
                 </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Description</label>
+                    <textarea class="form-control" name="description" id="" rows="3"></textarea>
+                  </div>
             <br>
             <button class="btn btn-primary" type="submit">Update recommendation</button>
             
@@ -223,6 +227,9 @@ $(document).ready(function () {
        
     });
 });
+
+    new DataTable('#myrecommendation_table');
+
 </script>
 
 @endsection

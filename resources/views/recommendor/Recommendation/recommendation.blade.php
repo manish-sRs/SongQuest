@@ -23,24 +23,27 @@
                     <form class="needs-validation" method="post" action="{{ route('recommender.recommendation.create') }}" >
                         @csrf
                     <div class="form-row">
-                    <div class="col-md-4 mb-3">
-                        <label for="validationTooltip01">Recommendation Name</label>
-                        <input class="form-control" type="text" name="recommendation_name" id=""/>
-                        </div>
+                        <div class="row">
+                            <div class="col-6 mb-3">
+                                <label for="validationTooltip01">Recommendation Name</label>
+                                <input class="form-control" type="text" name="recommendation_name" id=""/>
+                            </div>
 
-                        <div class="col-md-4 mb-3">
-                        <label for="validationTooltip01">Recommendation For</label>
-                        <select class="form-control select2" name="recommendation_for"  id="songSelect1">
-                            <option value="0" selected disabled>---Select---</option>
-                            @foreach ($song as $item)
-                            <option value="{{ $item->id }}" data-artist="@foreach($item->artists as $artist)
-                                {{$artist->artist_name}}, 
-                                @endforeach
-                                ">{{ $item->title }}</option>
-                        @endforeach
-                        </select>
-                        <div class="text-success" id="artistName1"></div>
-                        </div><br><br>
+                            <div class="col-6 mb-3">
+                            <label for="validationTooltip01">Recommendation For</label>
+                            <select class="form-control select2" name="recommendation_for"  id="songSelect1">
+                                <option value="0" selected disabled>---Select---</option>
+                                @foreach ($song as $item)
+                                <option value="{{ $item->id }}" data-artist="@foreach($item->artists as $artist)
+                                    {{$artist->artist_name}}, 
+                                    @endforeach
+                                    ">{{ $item->title }}</option>
+                            @endforeach
+                            </select>
+                            <div class="text-success" id="artistName1"></div>
+                            </div>
+                      </div>
+                        <br><br>
 
                         <div class="col-md-4 mb-3">
                         <label for="validationTooltip01">Recommendation 1</label>
@@ -86,6 +89,14 @@
                         </select>
                         <div class="text-success" id="artistName4"></div>
                         </div>
+                        <div class="col-md-4 mb-3">
+                            
+                           <div class="mb-3">
+                             <label for="" class="form-label">Description</label>
+                             <textarea class="form-control" name="description" id="" rows="3"></textarea>
+                           </div>
+                          
+                            </div>
                     <br>
                     <button class="btn btn-primary" type="submit">Submit recommendation</button>
                     <br><br>

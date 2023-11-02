@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\artist;
+use App\Models\Recommendation;
 use App\Models\song;
 use App\Models\Genre;
 use App\Models\ArtistSong;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\SongSimilarity;
 
 class SongController extends Controller
 {
@@ -73,8 +75,21 @@ class SongController extends Controller
 
     public function songDetail(Request $request, $id){
         $song = Song::with('artists')->find($id);
+
+
+        // Algorithm using:
+        $recommendedSongs=[];
+        if($song){
+            $songs= Song::latest()->where('genre_id',$song->genre_id)->get()->toArray();
+        $songSimilarity = new SongSimilarity($songs);
+        $similarityMatrix  = $songSimilarity->calculateSimilarityMatrix();
+        $recommendedSongs = $songSimilarity->getSongsSortedBySimularity($song->id, $similarityMatrix);
+        $recommendedSongIds = array_column($recommendedSongs, 'id');
+        $recommended_list = Song::with('artists')->whereIn('id', $recommendedSongIds)->get();
+      
+        }
        
-        return view('shared.song_detail',['song' => $song]);
+        return view('shared.song_detail',['song' => $song,'recommendedSongs'=>$recommended_list]);
     }
 
     public function songview(Request $request){

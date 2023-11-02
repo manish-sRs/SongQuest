@@ -2,12 +2,12 @@
 
 @section('content')
 
-<div class="container" style="padding-bottom: 40px; padding-top:20px;">
+{{-- <div class="container" style="padding-bottom: 40px; padding-top:20px;">
   <form class="d-flex">
     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
     <button class="btn btn-outline-success" type="submit">Search</button>
   </form>
-</div>
+</div> --}}
 
 <!--
 <div class="container" style="max-width: 100%; border: 4px solid ; border-radius: 5px;">
@@ -51,6 +51,8 @@
 -->
 
 <!-- Song details: -->
+<div class="container pt-4">
+
 
                 <div class="card-body">
                 
@@ -85,6 +87,45 @@
                     
                     </tbody>
                     </table>
+                    <h2>Recommendation for this song</h2>
+                    <table class="table table-striped table-responsive" id="recommendation_table">
+                      <thead>
+                          <tr>
+                              <th scope="col">Number</th>
+                              <th scope="col">Recommended For You:</th>
+                              <th>Artists</th>
+                              <th>Genre</th>
+                              <th>Album</th>
+                              <th>Year</th>
+                              <th scope="col">Action</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      @php
+                          $counter = 1;
+                      @endphp
+  
+                      @foreach ($recommendedSongs as $item)
+                          <tr>
+                              <th scope="row">{{ $counter }}</th>
+                              <td>{{$item['title']}}</td>
+                              <td>@foreach ($item->artists as $artist)
+                                  {{$artist->artist_name}},
+                                  @endforeach</td>
+                              <td>{{ $item->genre->genre_name }}</td>
+                              <td>{{$item['album']}}</td>
+                              <td>{{$item['year']}}</td>
+                              <td><a href="{{ route('recommendation.songs.detail', ['id' => $item['id']]) }} " class="btn btn-success" >View</a></td>
+                              
+                              </td>
+                          </tr>
+                          @php
+                              $counter++;
+                          @endphp
+                      @endforeach
+   
+                      </tbody>
+                  </table>
 
                 </div>
 
@@ -94,12 +135,13 @@
 
 
 
-
+            </div>
 
 
 
 
 <script>
+     new DataTable('#recommendation_table');
     // YouTube video URL
   var youtubeUrl = '{{ $song->link }}';
 

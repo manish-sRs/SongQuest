@@ -30,6 +30,7 @@ class RecomendationController extends Controller
         'recommendation_1' => $request->recommendation_1,
         'recommendation_2' => $request->recommendation_2,
         'recommendation_3' => $request->recommendation_3,
+        'description' =>  $request->description,
         'user_id' => $userId 
         ]);
 
@@ -56,6 +57,7 @@ class RecomendationController extends Controller
         $recommendation->recommendation_1 = $request->recommendation_1;
         $recommendation->recommendation_2 = $request->recommendation_2;
         $recommendation->recommendation_3 = $request->recommendation_3;
+        $recommendation->description = $request->description;
         
         // Save the updated recommendation
         $recommendation->save();
@@ -67,7 +69,7 @@ class RecomendationController extends Controller
         Alert::error('Error Message', 'Recommendation not found.');
     }
 
-        //Alert::success('Success', 'Custom Recommendation added successfully.');
+        // Alert::success('Success', 'Custom Recommendation added successfully.');
         // Alert::error('Error Message', 'Optional Title');
         // Alert::warning('Warning Message', 'Optional Title');
         // Alert::info('Info Message', 'Optional Title');
@@ -98,9 +100,8 @@ class RecomendationController extends Controller
         $song = Song::with('artists')->get();
         $recommendation_list= Recommendation::join('songs as songs0', 'recommendations.recommendation_for', '=', 'songs0.id')
                                         ->join('songs as songs1', 'recommendations.recommendation_1', '=', 'songs1.id')
-                                       ->join('songs as songs2', 'recommendations.recommendation_2', '=', 'songs2.id')
-                                       ->join('songs as songs3', 'recommendations.recommendation_3', '=', 'songs3.id')
-                                       
+                                        ->join('songs as songs2', 'recommendations.recommendation_2', '=', 'songs2.id')
+                                        ->join('songs as songs3', 'recommendations.recommendation_3', '=', 'songs3.id')                                   
                                         ->select(
                                             'recommendations.*',
                                             'songs0.id as rec_for_id',
@@ -111,13 +112,12 @@ class RecomendationController extends Controller
                                             'songs2.title as recommendation_2_name',
                                             'songs3.id as rec_3_id',
                                             'songs3.title as recommendation_3_name'
-                                        ) ->where('recommendations.user_id','=',$userId) ->get();
+                                        )->where('recommendations.user_id','=',$userId) ->get();
         return view('recommendor.recommendation.myrecommendation',["recommendations"=>$recommendation_list, "song" => $song]);
     }
 
     public function recommendation_detail(Request $request,$id){
        
-
         $recommendation= Recommendation::join('songs as songs0', 'recommendations.recommendation_for', '=', 'songs0.id')
         ->join('songs as songs1', 'recommendations.recommendation_1', '=', 'songs1.id')
        ->join('songs as songs2', 'recommendations.recommendation_2', '=', 'songs2.id')
@@ -146,16 +146,18 @@ class RecomendationController extends Controller
         
 
         // Algorithm using:
-        $recommendedSongs=[];
+        $recommended_list=[];
         if($request->song_id){
             $songs= Song::latest()->where('genre_id',$selectedSong->genre_id)->get()->toArray();
         $songSimilarity = new SongSimilarity($songs);
         $similarityMatrix  = $songSimilarity->calculateSimilarityMatrix();
         $recommendedSongs = $songSimilarity->getSongsSortedBySimularity($request->song_id, $similarityMatrix);
+        $recommendedSongIds = array_column($recommendedSongs, 'id');
+        $recommended_list = Song::with('artists')->whereIn('id', $recommendedSongIds)->get();
+      
         }
-
-
+    
         $song = Song::with('artists')->get();
-        return view('recommendor.recommendation.algorithmrecommendation',['song'=> $song,'recommendedSongs'=>$recommendedSongs,'song_id'=>$request->song_id]);
+        return view('recommendor.recommendation.algorithmrecommendation',['song'=> $song,'recommendedSongs'=>$recommended_list,'song_id'=>$request->song_id]);
     }
 }
