@@ -8,8 +8,8 @@
                 <div class="card-header">{{ __('Dashboard') }}
                 <a class="btn btn-warning" href="{{ route('admin.genre')}}" >Genre</a>
                 <a class="btn btn-warning" href="{{route('admin.songs')}}">Songs</a>
-                <a class="btn btn-warning">Recommendation</a>
-                <a class="btn btn-warning">Songs</a>
+                <a class="btn btn-warning" href="{{route('adminRecView')}}">Recommendation</a>
+                
                 </div>
 
                 <div class="card-body">
@@ -47,7 +47,7 @@
                             <td>{{ $user->name }}</td> 
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->role }}</td>
-                            <td><a href="#" class="btn btn-primary" >Update</a> <a href="#" class="btn btn-danger">Delete</a>
+                            <td><a href="#" class="btn btn-danger">Delete</a>
                             
                             </td>
                         </tr>

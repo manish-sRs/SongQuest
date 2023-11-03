@@ -3,13 +3,14 @@
 @section('content')
 <div class="container" style="max-width: 100%; padding-top:12px;">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="">
             <div class="card">
                 <div class="card-header">
                 <!-- Items in the header -->
-                {{ __('Dashboard') }}
-                |       
-                <a href="" >Genre</a>
+                {{ __('Genre') }}
+                |
+                <a class="btn btn-warning" href="{{route('admin.songs')}}">Songs</a>       
+                <a class="btn btn-warning" href="{{route('adminRecView')}}" >Recommendation</a>
                 </div>
 
                 <div style="font-size: larger; padding-top:12px; padding-bottom:10px; padding-left:5px">List of all the genre:</div>
