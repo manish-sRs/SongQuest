@@ -52,7 +52,7 @@
                             <td>{{ $recommendation->recommendation_2_name }}</td>
                             <td>{{ $recommendation->recommendation_3_name }}</td>
                             <td>{{ $recommendation->description}}</td>
-                            <td>{{ $recommendation->user->name }}</td>
+                            <td><a href="{{ route('recommender.profile',['id'=>$recommendation->user_id])}}">{{ $recommendation->user->name }}</a></td>
                             <td>  
                              <button type="button" class="btn btn-primary update-rec" data-bs-toggle="modal" data-bs-target="#myModal" 
                                 data-recommendation-id="{{ $recommendation->id }}" 
