@@ -6,6 +6,7 @@ use App\Http\Controllers\GenreController;
 use App\Http\Controllers\SongController;
 use App\Http\Controllers\RecomendationController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,6 +71,7 @@ Route::middleware(['auth','user-role:admin'])->group(function()
 {
     //Home:
     Route::get("/admin/home",[HomeController::class, 'adminHome'])->name("admin.home");
+    Route::get("/admin/home/delete/{id}",[UserController::class, 'delete'])->name("user.delete");
     
     //genre route:
     Route::get("/admin/genre",[GenreController::class, 'index'])->name("admin.genre");
@@ -84,7 +86,9 @@ Route::middleware(['auth','user-role:admin'])->group(function()
     
     //Recommendation
     Route::get("/admin/adminrecommendationview",[RecomendationController::class, 'recViewAdmin'])->name("adminRecView");
-
+    Route::get("/admin/recViewAdmin{id}",[RecomendationController::class, 'viewRecAdmin'])->name("viewRecAdmin");
+    Route::get("/admin/recViewAdmin/delete/{id}",[RecomendationController::class, 'adminRecDelete'])->name("adminRec.delete");
+   
     //News routes:
     Route::resource('news', NewsController::class)->names([
         'index' => 'admin.news',
@@ -95,6 +99,7 @@ Route::middleware(['auth','user-role:admin'])->group(function()
      ]);
 
     Route::post('update', [NewsController::class, 'update'])->name('news.update');
+    Route::get("/admin/news/delete/{id}",[NewsController::class, 'destroy'])->name("news.delete");
     
      
 

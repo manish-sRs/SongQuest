@@ -5,7 +5,9 @@
     <div class="row justify-content-center">
         <div class="">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}
+                <div class="card-header">
+                    {{ __('Dashboard') }}
+                    |
                 <a class="btn btn-warning" href="{{ route('admin.genre')}}" >Genre</a>
                 <a class="btn btn-warning" href="{{route('admin.songs')}}">Songs</a>
                 <a class="btn btn-warning" href="{{route('adminRecView')}}">Recommendation</a>
@@ -48,7 +50,7 @@
                             <td>{{ $user->name }}</td> 
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->role }}</td>
-                            <td><a href="#" class="btn btn-danger">Delete</a>
+                            <td><a href="{{route('user.delete',['id' => $user->id])}}" class="btn btn-danger">Delete</a>
                             
                             </td>
                         </tr>

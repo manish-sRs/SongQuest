@@ -9,47 +9,6 @@
   </form>
 </div> --}}
 
-<!--
-<div class="container" style="max-width: 100%; border: 4px solid ; border-radius: 5px;">
-    <div class="container justify-content-center align-items-center">
-        <div>
-            <div class="row">
-                <div class="col-6">
-                    <label for="">Song Title</label>
-                    <p>{{ $song->title }}</p>
-                </div>
-
-                <div class="col-6">
-                    <label for="">Artist</label>
-                    <p>@foreach ($song->artists as $artist)
-                        {{$artist->artist_name}},
-                      @endforeach</p>
-                </div>
-            </div>
-
-            <div class="row justify-content-center">
-                <div class="col-6">Album
-                    <p>{{ $song->album }}</p>
-                </div>
-                <div class="col-6">Genre
-                    <p>{{ $song->genre->genre_name }}</p>
-                </div>
-            </div>
-
-            <div class="row justify-content-center">
-                <div class="col-6">Year
-                    <p>{{ $song->year }}</p>
-                </div>
-                
-            </div>
-
-        </div>
-    </div>
-    
-</div>
-
--->
-
 <!-- Song details: -->
 <div class="container pt-4">
 

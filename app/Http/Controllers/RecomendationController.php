@@ -94,6 +94,20 @@ class RecomendationController extends Controller
         return redirect()->route('myrecommendation');
     }
 
+    public function adminRecDelete($id) {
+        
+        $recommendation = Recommendation::find($id);
+    
+        if ($recommendation) {
+            $recommendation->delete();
+            Alert::success('Success', 'Custom Recommendation deleted successfully.');
+        } else {
+            
+            Alert::error('Error Message', 'Recommendation not found');
+        }
+        return redirect()->route('adminRecView');
+    }
+
 
     public function myrecommendation(Request $request){
         $userId=Auth::id();
@@ -205,5 +219,28 @@ class RecomendationController extends Controller
         Alert::success('Success', 'Rated Successfully.');
         return redirect()->back(); 
      }
+    
      
+     public function viewRecAdmin(Request $request,$id){
+       
+        $recommendation= Recommendation::join('songs as songs0', 'recommendations.recommendation_for', '=', 'songs0.id')
+        ->join('songs as songs1', 'recommendations.recommendation_1', '=', 'songs1.id')
+       ->join('songs as songs2', 'recommendations.recommendation_2', '=', 'songs2.id')
+       ->join('songs as songs3', 'recommendations.recommendation_3', '=', 'songs3.id')
+       
+        ->select(
+            'recommendations.*',
+            'songs0.id as rec_for_id',
+            'songs0.title as rec_for_title',
+            'songs1.id as rec_1_id',
+            'songs1.title as rec_1_title',
+            'songs2.id as rec_2_id',
+            'songs2.title as rec_2_title',
+            'songs3.id as rec_3_id',
+            'songs3.title as rec_3_title'
+            
+        ) ->find($id);
+        
+    return view('admin.recViewAdmin',["recommendation"=>$recommendation]);
+    }
 }

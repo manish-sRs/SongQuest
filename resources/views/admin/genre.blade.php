@@ -9,8 +9,9 @@
                 <!-- Items in the header -->
                 {{ __('Genre') }}
                 |
-                <a class="btn btn-warning" href="{{route('admin.songs')}}">Songs</a>       
-                <a class="btn btn-warning" href="{{route('adminRecView')}}" >Recommendation</a>
+                <a class="btn btn-warning" href="{{route('admin.songs')}}">Songs</a>
+                <a class="btn btn-warning" href="{{route('adminRecView')}}">Recommendation</a>
+                <a class="btn btn-warning" href="{{route('admin.news')}}">News</a>
                 </div>
 
                 <div style="font-size: larger; padding-top:12px; padding-bottom:10px; padding-left:5px">List of all the genre:</div>

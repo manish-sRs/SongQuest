@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\News;
 use Intervention\Image\Facades\Image;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class NewsController extends Controller
 {
@@ -53,7 +54,7 @@ public function store(Request $request)
 
 public function show(News $news)
 {
-    return view('admin.news.show', compact('news'));
+    return view('admin.show', compact('news'));
 }
 
 public function edit($id)
@@ -70,9 +71,23 @@ public function update(Request $request)
     return redirect()->route('admin.news');
 }
 
-public function destroy(News $news)
-{
-    $news->delete();
+// public function destroy(News $news)
+// {
+//     $news->delete();
+//     return redirect()->route('admin.news');
+// }
+
+public function destroy($id) {
+        
+    $news = News::find($id);
+
+    if ($news) {
+        $news->delete();
+        Alert::success('Success', 'News successfully deleted.');
+    } else {
+        
+        Alert::error('Error Message', 'Something went wrong');
+    }
     return redirect()->route('admin.news');
 }
 

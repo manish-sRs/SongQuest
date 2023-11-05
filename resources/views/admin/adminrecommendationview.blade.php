@@ -10,7 +10,7 @@
                     |
                     <a class="btn btn-warning" href="{{ route('admin.genre')}}" >Genre</a>
                     <a class="btn btn-warning" href="{{route('admin.songs')}}">Songs</a>
-                    <a class="btn btn-warning" href="{{route('adminRecView')}}">Recommendation</a>
+                    <a class="btn btn-warning" href="{{route('admin.news')}}">News</a>
                     
                 </div>
                 
@@ -44,7 +44,8 @@
                             <td>{{ $recommendation->recommendation_3_name }}</td>
                             <td>{{ $recommendation->description}}</td>
                             <td>{{ $recommendation->user->name }}</td>
-                            <td><a href="{{ route('recommendation_detail', ['id' => $recommendation->id])}}" class="btn btn-primary update-genre" >View</a>
+                            <td><a href="{{ route('viewRecAdmin', ['id' => $recommendation->id])}}" class="btn btn-primary update-genre" >View</a>
+                                <a href="{{route('adminRec.delete',['id' => $recommendation->id])}}" class="btn btn-danger">Delete</a>
                             
                             </td>
                         </tr>

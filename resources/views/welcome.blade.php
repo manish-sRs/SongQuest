@@ -41,7 +41,7 @@
                     @endauth
                 </div>
             @endif
-
+            <br>
             <div class="container w-100">
                 <div class="flex justify-center w-100" id="welcome-head-text">
                     SongQuest 

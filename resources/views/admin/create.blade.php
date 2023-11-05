@@ -46,7 +46,7 @@
                 
                     </div>
                     <button class="btn btn-primary" type="submit">Add news</button>
-                    <br>
+                    <br><br>
                     </form>
 
             </div>

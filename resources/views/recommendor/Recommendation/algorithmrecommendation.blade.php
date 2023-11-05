@@ -7,8 +7,12 @@
         <div class="">
             <div class="card">
                 <div class="card-header" id="card_header">
-                <a href="{{ route('recommender.song') }}" class="btn btn-warning" >Add a song</a>
-                    <a href="{{ route('recommender.recommendation') }}" class="btn btn-warning" >Recommend a song </a>
+                {{ __(' Algorithm Recommendation: ') }}
+                |
+                    <a href="{{ route('recommender.song') }}" class="btn btn-warning" >Add song details</a>
+                    <a href="{{ route('recommender.recommendation') }}" class="btn btn-warning" >Create Recommendations </a>
+                    <a class="btn btn-warning" href="{{ route('myrecommendation') }}">My Recommendation</a>
+                    <a class="btn btn-warning" href="{{route('recommender.songview')}}">Songs</a>
                 </div>
                 <div>This is where algorithm works like a god:</div>
                 <form class="needs-validation" method="get" action="" style="padding-left: 25px; padding-top:10px;">
