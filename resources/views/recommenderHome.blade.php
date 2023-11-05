@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+
+
 <div class="container" style="max-width: 100%;">
     <div class="row justify-content-center">
         <div class="">
@@ -35,6 +38,7 @@
                             <th scope="col">Description</th>
                             <th scope="col">User</th>
                             <th scope="col">Action</th>
+                            <th scope="col">Rating</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -53,8 +57,8 @@
                             <td>{{ $recommendation->description}}</td>
                             <td>{{ $recommendation->user->name }}</td>
                             <td><a href="{{ route('recommendation_detail', ['id' => $recommendation->id])}}" class="btn btn-primary update-genre" >View</a>
-                            
                             </td>
+                            <td>{{ $recommendation->rating_avg_rating }}</td>
                         </tr>
                         @php
                             $counter++;
@@ -74,6 +78,10 @@
 
 <script>
     new DataTable('#recommendation_table');
+
+    
+ 
+
 </script>
 
 @endsection

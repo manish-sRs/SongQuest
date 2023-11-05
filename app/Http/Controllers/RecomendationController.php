@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rating;
 use App\Models\Recommendation;
 use Illuminate\Http\Request;
 use App\Models\song;
@@ -175,11 +176,14 @@ class RecomendationController extends Controller
 
         // Algorithm using:
         $recommended_list=[];
+
         if($request->song_id){
             $songs= Song::latest()->where('genre_id',$selectedSong->genre_id)->get()->toArray();
         $songSimilarity = new SongSimilarity($songs);
         $similarityMatrix  = $songSimilarity->calculateSimilarityMatrix();
         $recommendedSongs = $songSimilarity->getSongsSortedBySimularity($request->song_id, $similarityMatrix);
+        $recommendedSongs = array_slice($recommendedSongs, 0, 10);
+
         $recommendedSongIds = array_column($recommendedSongs, 'id');
         $recommended_list = Song::with('artists')->whereIn('id', $recommendedSongIds)->get();
       
@@ -188,4 +192,18 @@ class RecomendationController extends Controller
         $song = Song::with('artists')->get();
         return view('recommendor.recommendation.algorithmrecommendation',['song'=> $song,'recommendedSongs'=>$recommended_list,'song_id'=>$request->song_id]);
     }
+
+
+    public function giveRating(Request $request){
+        $userId = Auth::id();
+     
+        Rating::updateOrCreate(
+            ['recommendation_id' => $request->recommendation_id, 'user_id' => $userId],
+            ['rating' => $request->rating]
+        );
+     
+        Alert::success('Success', 'Rated Successfully.');
+        return redirect()->back(); 
+     }
+     
 }

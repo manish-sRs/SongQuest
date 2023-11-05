@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container" style="max-width: 100%;">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -15,7 +16,17 @@
                 <div class="card-body">
                     <div>
                         <div>Recomendation Name: {{$recommendation->recommendation_name }}</div>
+                        
                         <div>Recommended By: <span>{{$recommendation->user->name  }}</span></div>
+                        <div class="">
+                               <form action="{{route('giveRating')}}" method="post">  
+                                @csrf  
+                                        <input name="recommendation_id" type="hidden" value="{{$recommendation->id}}">
+                                        <input id="input-1" name="rating" type="number" min='1' max='5'>
+                                        <button class="btn btn-primary" >Submit</button>
+                                </form>
+                        </div>
+                                
                         <div>Song</div>
                         <div><table class="table table-responsive">
                             <thead> 

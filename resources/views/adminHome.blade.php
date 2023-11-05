@@ -9,6 +9,7 @@
                 <a class="btn btn-warning" href="{{ route('admin.genre')}}" >Genre</a>
                 <a class="btn btn-warning" href="{{route('admin.songs')}}">Songs</a>
                 <a class="btn btn-warning" href="{{route('adminRecView')}}">Recommendation</a>
+                <a class="btn btn-warning" href="{{route('admin.news')}}">News</a>
                 
                 </div>
 
