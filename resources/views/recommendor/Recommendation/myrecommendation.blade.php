@@ -7,10 +7,11 @@
         <div class="">
             <div class="card">
                 <div class="card-header" id="card_header">
-                <a href="{{ route('recommender.song') }}" class="btn btn-warning" >Add a song</a>
-                    <a href="{{ route('recommender.recommendation') }}" class="btn btn-warning" >Recommend a song </a>
-                    <button class="btn btn-warning" onclick="">Algorithm Recommendation</button>
-                    
+                {{ __(' My Recoomendation') }}
+                      |
+                    <a href="{{ route('recommender.song') }}" class="btn btn-warning" >Add song details</a>
+                    <a href="{{ route('recommender.recommendation') }}" class="btn btn-warning" >Create Recommendations </a>
+                    <a class="btn btn-warning" href="{{route('algoRecommendation')}}">Algorithm Recommendation</a>
                     <a class="btn btn-warning" href="{{route('recommender.songview')}}">Songs</a>
                 </div>
 
@@ -66,7 +67,7 @@
                              >
                                  Edit
                              </button>
-                                <a href="{{ route('recommendation.delete', ['id' => $recommendation->id])}}" class="btn btn-primary update-rec" >delete</a>
+                                <a href="{{ route('recommendation.delete', ['id' => $recommendation->id])}}" class="btn btn-danger update-rec" >delete</a>
                             </td>
 
                         </tr>

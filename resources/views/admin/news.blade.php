@@ -11,7 +11,7 @@
                     <a class="btn btn-warning" href="{{ route('admin.genre')}}" >Genre</a>
                     <a class="btn btn-warning" href="{{route('admin.songs')}}">Songs</a>
                     <a class="btn btn-warning" href="{{route('adminRecView')}}">Recommendation</a>
-                    <a class="btn btn-warning" href="{{ route('news.create') }}">Add News</a>
+                    <a class="btn btn-primary" href="{{ route('news.create') }}">Add News</a>
                 </div>
 
                 <!-- Data table to display the news: -->
@@ -40,7 +40,9 @@
                             <td><img src="{{ asset('images/'.$n->news_image) }}" alt=""></td>
                             <td>
                                 <a class="btn btn-primary" href="{{ route('admin.edit', $n->id) }}">Edit</a>
-                                <a class="btn btn-danger" href="{{ route('news.destroy', $n->id) }}">Delete</a>
+                            </td>
+                            <td>    
+                                <a class="btn btn-danger" href="{{ route('news.delete', $n->id) }}">Delete</a>
                             </td>
                         </tr>
                         @php
