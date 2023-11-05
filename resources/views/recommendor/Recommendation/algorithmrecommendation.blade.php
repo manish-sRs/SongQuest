@@ -33,7 +33,7 @@
                         <div class="text-success" id="artistName1"></div>
                         </div><br>
                         <button class="btn btn-primary" type="submit">Generate Recommendation</button>
-                        <a class="btn btn-success">Save List </a>
+                        
                         <br><br>
                 </form>
                         <!-- Recommendation View for the songs (Algorithm) -->

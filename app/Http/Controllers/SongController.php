@@ -31,7 +31,36 @@ class SongController extends Controller
         ]);
     
         $artistNames = explode(',', $request->artist_name);
+        
+
+        //Check if a song with the same title, artist_name, and album already exists
+        
+
+
+
+        // Check if a song with the same title and artist_name already exists
+            $existingSong = Song::where('title', $request->song_title)
+            ->whereHas('artists', function ($query) use ($request) {
+                $query->where('artist_name', $request->artist_name);
+            })
+            ->exists();
+
+            if ($existingSong) {
+                $existingSong = Song::where('title', $request->song_title)
+                        ->where('album', $request->album)
+                        ->exists();
+
     
+
+                    if ($existingSong) {
+                Alert::error('Error', 'Matching song already exists.');
+                return redirect()->back();
+             }
+                
+          }
+
+
+
         try {
             DB::beginTransaction();
     

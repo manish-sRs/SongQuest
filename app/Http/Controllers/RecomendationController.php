@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rating;
 use App\Models\Recommendation;
 use Illuminate\Http\Request;
 use App\Models\song;
@@ -139,6 +140,34 @@ class RecomendationController extends Controller
     return view('recommendor.recommendation.recommendationDetail',["recommendation"=>$recommendation]);
     }
 
+    //Admin View recommendation
+    public function recViewAdmin()
+    {
+        $recommendation_list= Recommendation::join('songs as songs0', 'recommendations.recommendation_for', '=', 'songs0.id')
+        
+                                        ->join('songs as songs1', 'recommendations.recommendation_1', '=', 'songs1.id')
+        
+                                       ->join('songs as songs2', 'recommendations.recommendation_2', '=', 'songs2.id')
+        
+                                       ->join('songs as songs3', 'recommendations.recommendation_3', '=', 'songs3.id')
+                                       
+                                        ->select(
+                                            'recommendations.*',
+        
+                                            'songs0.title as recommendation_for_name',
+        
+                                            'songs1.title as recommendation_1_name',
+        
+                                            'songs2.title as recommendation_2_name',
+        
+                                            'songs3.title as recommendation_3_name'
+                                        )->get();
+                                  
+
+        return view('admin/adminrecommendationview',["recommendations"=>$recommendation_list]);
+    }
+
+
     public function algorecommendation(Request $request,){
         
         $selectedSong= Song::find($request->song_id);
@@ -147,11 +176,14 @@ class RecomendationController extends Controller
 
         // Algorithm using:
         $recommended_list=[];
+
         if($request->song_id){
             $songs= Song::latest()->where('genre_id',$selectedSong->genre_id)->get()->toArray();
         $songSimilarity = new SongSimilarity($songs);
         $similarityMatrix  = $songSimilarity->calculateSimilarityMatrix();
         $recommendedSongs = $songSimilarity->getSongsSortedBySimularity($request->song_id, $similarityMatrix);
+        $recommendedSongs = array_slice($recommendedSongs, 0, 10);
+
         $recommendedSongIds = array_column($recommendedSongs, 'id');
         $recommended_list = Song::with('artists')->whereIn('id', $recommendedSongIds)->get();
       
@@ -160,4 +192,18 @@ class RecomendationController extends Controller
         $song = Song::with('artists')->get();
         return view('recommendor.recommendation.algorithmrecommendation',['song'=> $song,'recommendedSongs'=>$recommended_list,'song_id'=>$request->song_id]);
     }
+
+
+    public function giveRating(Request $request){
+        $userId = Auth::id();
+     
+        Rating::updateOrCreate(
+            ['recommendation_id' => $request->recommendation_id, 'user_id' => $userId],
+            ['rating' => $request->rating]
+        );
+     
+        Alert::success('Success', 'Rated Successfully.');
+        return redirect()->back(); 
+     }
+     
 }

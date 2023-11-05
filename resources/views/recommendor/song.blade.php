@@ -63,7 +63,7 @@
                             @endforeach
                         </select>
                         </div>
-                        <label class="text-danger">* If the song already exists in the database than go to the "Existing Song Recommendation" and search the song in there !</label>
+                        
                     </div>
                     <br>
                     <div class="form-row">
@@ -72,6 +72,7 @@
                             <input type="text" id="youtube-link" class="form-control" placeholder="youtube link" name="link">
                               <label for="" class="text-danger" id="error-message">*Must be a YouTube link</label>
                         </div>
+                        <label class="text-danger">* If the song already exists in the database than go to the "Recommend song" and search the song in there !</label>    
                     </div><br>
                     <button class="btn btn-primary" type="submit">Submit recommendation</button>
                     </form>
