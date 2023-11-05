@@ -15,9 +15,9 @@
 
                             <div class="col-md-6">
                                 <select id="role" class="form-control @error('role') is-invalid @enderror" name="role" value="{{ old('role') }}" required autofocus>
-                                    <option value="0" selected>User</option>
+                                    {{-- <option value="0" selected>User</option> --}}
                                     <option value="1">Recommender</option>
-                                    <option value="2">Admin</option>
+                                    {{-- <option value="2">Admin</option> --}}
                                   
                                    
                                 </select>

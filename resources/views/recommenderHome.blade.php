@@ -57,7 +57,7 @@
                             <td>{{ $recommendation->recommendation_2_name }}</td>
                             <td>{{ $recommendation->recommendation_3_name }}</td>
                             <td>{{ $recommendation->description}}</td>
-                            <td>{{ $recommendation->user->name }}</td>
+                            <td><a href="{{ route('recommender.profile',['id'=>$recommendation->user_id])}}">{{ $recommendation->user->name }}</a></td>
                             <td><a href="{{ route('recommendation_detail', ['id' => $recommendation->id])}}" class="btn btn-primary update-genre" >View</a>
                             </td>
                             <td>{{ $recommendation->rating_avg_rating }}</td>

@@ -26,7 +26,8 @@ class HomeController extends Controller
      */
 
     public function index(){
-        $news = News::all();
+        //$news = News::all();
+        $news = News::orderBy('created_at', 'desc')->get();
         return view('welcome',['news' => $news]);
     }
 
@@ -56,7 +57,7 @@ class HomeController extends Controller
         ->withAvg('rating', 'rating')
         ->get();
      
-                                 
+                           
                                         
         return view('recommenderHome',["msg"=>"Hello! ","recommendations"=>$recommendation_list]);
     }

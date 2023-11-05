@@ -51,6 +51,11 @@ Route::middleware(['auth','user-role:recommender'])->group(function()
     Route::get("/recommender/recommendation/detail/{id}",[RecomendationController::class, 'recommendation_detail'])->name("recommendation_detail");
     Route::get("/recommender/recommendation/myrecommendation/delete/{id}",[RecomendationController::class, 'delete'])->name("recommendation.delete");
 
+    //profile
+    Route::get("/recommender/profile/{id}",[UserController::class, 'profile'])->name("recommender.profile");
+    Route::post("/recommender/profile/edit",[UserController::class, 'edit'])->name("recommender.ProfileEdit");
+    Route::post('/recommender/change-password',[UserController::class, 'changePassword'])->name('change.password');
+
     //Ratings:
     Route::post("/recommender/myrecommendation/addRating",[RecomendationController::class, 'giveRating'])->name("giveRating");
 
@@ -108,7 +113,3 @@ Route::middleware(['auth','user-role:admin'])->group(function()
 
 
 /* Profile routing */
-Route::middleware(['auth','user-role:recommender'])->group(function()
-{
-    Route::get("/recommender/profile",[HomeController::class, 'recommenderHome'])->name("recommender.profile");
-});
