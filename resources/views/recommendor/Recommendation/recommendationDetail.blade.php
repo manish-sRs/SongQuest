@@ -17,7 +17,7 @@
                     <div>
                         <div>Recomendation Name: {{$recommendation->recommendation_name }}</div>
                         
-                        <div>Recommended By: <span>{{$recommendation->user->name  }}</span></div>
+                        <div>Recommended By: <span><a href="{{ route('recommender.profile',['id'=>$recommendation->user_id])}}">{{ $recommendation->user->name }}</a></span></div>
                         <div class="">
                                <form action="{{route('giveRating')}}" method="post">  
                                 @csrf  

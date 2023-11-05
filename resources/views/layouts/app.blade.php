@@ -82,7 +82,17 @@
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">Log Out</button>
                             <!-- Profile button -->                         
-                            <div id="profile_btn"><button class="btn btn-dark"> {{ Auth::user()->name }} </button> </div>
+                            <div id="profile_btn">
+                                @if(Auth::user()->role == "user")
+                                  <a class="btn btn-dark" > {{ Auth::user()->name }} </a>
+                                @elseif(Auth::user()->role == "recommender")
+                                  <a class="btn btn-dark"  href="{{ route('recommender.profile',['id'=>Auth::user()->id])}}"> {{ Auth::user()->name }} </a>
+                                @elseif(Auth::user()->role == "admin")
+                                 <button class="btn btn-dark" > {{ Auth::user()->name }} </button>
+                              @endif
+                                
+                               
+                             </div>
                             
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf

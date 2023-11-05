@@ -56,7 +56,7 @@ class HomeController extends Controller
         ->withAvg('rating', 'rating')
         ->get();
      
-                                 
+                           
                                         
         return view('recommenderHome',["msg"=>"Hello! ","recommendations"=>$recommendation_list]);
     }
