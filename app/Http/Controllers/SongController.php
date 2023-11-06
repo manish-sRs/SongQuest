@@ -22,10 +22,13 @@ class SongController extends Controller
     }
 
     public function songdelete($id) {
+
+      
         
         $song = song::find($id);
     
         if ($song) {
+            ArtistSong::where('song_id', $song->id)->delete();
             $song->delete();
             Alert::success('Success', 'Song deleted successfully.');
         } else {
