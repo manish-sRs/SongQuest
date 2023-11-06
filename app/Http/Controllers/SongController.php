@@ -21,6 +21,20 @@ class SongController extends Controller
         return view('recommendor.song', ['song' => $song, 'genre' => $genre]);
     }
 
+    public function songdelete($id) {
+        
+        $song = song::find($id);
+    
+        if ($song) {
+            $song->delete();
+            Alert::success('Success', 'Song deleted successfully.');
+        } else {
+            
+            Alert::error('Error Message', 'Something went wrong');
+        }
+        return redirect()->route('admin.songs');
+    }
+
 
 
     public function create(Request $request)
@@ -32,12 +46,6 @@ class SongController extends Controller
     
         $artistNames = explode(',', $request->artist_name);
         
-
-        //Check if a song with the same title, artist_name, and album already exists
-        
-
-
-
         // Check if a song with the same title and artist_name already exists
             $existingSong = Song::where('title', $request->song_title)
             ->whereHas('artists', function ($query) use ($request) {

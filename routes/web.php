@@ -88,6 +88,7 @@ Route::middleware(['auth','user-role:admin'])->group(function()
     //songs:
     Route::get("/admin/songs",[SongController::class, 'showSong'])->name("admin.songs");
     Route::get("/admin/song/view/{id}",[SongController::class, 'songDetail'])->name("admin.songs.detail");
+    Route::get("/admin/song/delete/{id}",[SongController::class, 'songDelete'])->name("admin.song.delete");
     
     //Recommendation
     Route::get("/admin/adminrecommendationview",[RecomendationController::class, 'recViewAdmin'])->name("adminRecView");
