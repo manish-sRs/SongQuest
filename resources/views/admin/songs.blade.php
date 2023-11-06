@@ -51,7 +51,8 @@
                         <td>{{ $item->genre->genre_name }}</td>
                         <td>{{$item->album}}</td>
                         {{-- <td>{{ $item->artist_id }}</td> --}}
-                        <td><a href="{{ route('admin.songs.detail', ['id' => $item->id]) }}" class="btn btn-success" >View</a> <a href="#" class="btn btn-danger">Delete</a>
+                        <td><a href="{{ route('admin.songs.detail', ['id' => $item->id]) }}" class="btn btn-success" >View</a> 
+                        <a href="{{ route('admin.song.delete', ['id' => $item->id]) }}" class="btn btn-danger">Delete</a>
                         
                         </td>
                     </tr>

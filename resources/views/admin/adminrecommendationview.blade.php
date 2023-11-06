@@ -60,5 +60,9 @@
             </div>
         </div>
     </div>
-</div>            
+</div>         
+
+<script>
+     new DataTable('#recommendation_table');
+</script>
 @endsection
