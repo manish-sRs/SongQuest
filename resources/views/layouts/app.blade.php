@@ -88,7 +88,7 @@
                                 @elseif(Auth::user()->role == "recommender")
                                   <a class="btn btn-dark"  href="{{ route('recommender.profile',['id'=>Auth::user()->id])}}"> {{ Auth::user()->name }} </a>
                                 @elseif(Auth::user()->role == "admin")
-                                 <button class="btn btn-dark" > {{ Auth::user()->name }} </button>
+                                <a class="btn btn-dark"  href="{{ route('admin.profile',['id'=>Auth::user()->id])}}"> {{ Auth::user()->name }} </a>
                               @endif
                                 
                                

@@ -105,9 +105,12 @@ Route::middleware(['auth','user-role:admin'])->group(function()
 
     Route::post('update', [NewsController::class, 'update'])->name('news.update');
     Route::get("/admin/news/delete/{id}",[NewsController::class, 'destroy'])->name("news.delete");
-    
-     
 
+    //profile
+    Route::get("/admin/profile/{id}",[UserController::class, 'AdminProfile'])->name("admin.profile");
+    Route::post("/admin/profile/edit",[UserController::class, 'edit'])->name("admin.ProfileEdit");
+    Route::post('/admin/change-password',[UserController::class, 'changePassword'])->name('admin.password');
+    
 
 });
 
