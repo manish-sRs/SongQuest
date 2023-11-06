@@ -31,6 +31,12 @@ class UserController extends Controller
         $user = User::find($id);
         return view('recommendor.profile.profile', ['user' => $user]);   
     }
+    public function AdminProfile(Request $request,$id)
+    {
+       // $id = Auth::id();
+        $user = User::find($id);
+        return view('admin.profile.profile', ['user' => $user]);   
+    }
     public function edit(Request $request)
     {
         $user = Auth::user();
@@ -62,8 +68,11 @@ class UserController extends Controller
 
         $user->save();
         Alert::success('Success', 'profile updated successfully.');
-
+        if(Auth::user()->role == "recommender"){
         return redirect()->route('recommender.profile',['id' => $user->id]);
+        } elseif(Auth::user()->role == "admin"){
+            return redirect()->route('admin.profile',['id' => $user->id]);
+        }
     }
     public function changePassword(Request $request)
     {
@@ -76,10 +85,18 @@ class UserController extends Controller
             $user->save();
             Alert::success('Success', 'password updated successfully.');
 
-            return redirect()->route('recommender.profile',['id' => $user->id]);
+            if(Auth::user()->role == "recommender"){
+                return redirect()->route('recommender.profile',['id' => $user->id]);
+                } elseif(Auth::user()->role == "admin"){
+                    return redirect()->route('admin.profile',['id' => $user->id]);
+                }
         } else {
             Alert::error('Error', 'Failed.');
-            return redirect()->route('recommender.profile',['id' => $user->id]);
+            if(Auth::user()->role == "recommender"){
+                return redirect()->route('recommender.profile',['id' => $user->id]);
+                } elseif(Auth::user()->role == "admin"){
+                    return redirect()->route('admin.profile',['id' => $user->id]);
+                }
         }
     }
                         
