@@ -186,9 +186,7 @@
   </div>
 
 <script>
-        $(document).ready(function() {
-    $('.select2').select2();
-});
+
 $(document).ready(function () {
         $('#songSelect1, #songSelect2, #songSelect3,  #songSelect4').change(function () {
             var selectedSong = $(this).find('option:selected');
@@ -230,7 +228,9 @@ $(document).ready(function () {
 });
 
     new DataTable('#myrecommendation_table');
-
+//   $(document).ready(function() {
+//      $('.select2').select2();
+//  });
 </script>
 
 @endsection
