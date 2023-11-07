@@ -57,7 +57,7 @@
                         </div>
                         <div class="col-md-3 mb-3">
                         <label for="validationTooltip05">Genre</label>
-                        <select class="form-control" name="genre_id" id="">
+                        <select class="form-control select2" name="genre_id" id="">
                             <option value="0" selected disabled>---Select---</option>
                             @foreach ($genre as $item)
                                 <option value="{{ $item->id }}">{{ $item->genre_name }}</option>
@@ -87,6 +87,9 @@
 <!-- Form  -->
 
 <script>
+     $(document).ready(function() {
+    $('.select2').select2();
+});
     document.getElementById('youtube-link').addEventListener('input', function() {
         var youtubeLink = document.getElementById('youtube-link').value;
         var errorMessage = document.getElementById('error-message');
